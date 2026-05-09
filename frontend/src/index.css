@@ -1,0 +1,186 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", sans-serif;
+
+  /* ─── Color tokens (logo blue palette) ─── */
+  --color-ink:      #000000;
+  --color-ink2:     #080d18;
+  --color-ink3:     #0f1929;
+  --color-muted:    #6b84a8;
+  --color-glass:    rgba(15, 40, 80, 0.35);
+  --color-glass2:   rgba(20, 55, 110, 0.45);
+  --color-white:    #f0f6ff;
+  --color-cream:    #cfe0ff;
+  --color-accent:   #1e6fd9;
+  --color-accent2:  #3d8ef0;
+  --color-electric: #4f9eff;
+  --color-mint:     #38b2e2;
+  --color-lavender: #7aaef5;
+  --color-border:   rgba(79, 158, 255, 0.12);
+}
+
+/*
+  ══════════════════════════════════════════
+  COLOR PALETTE — Based on logo
+  Logo: dark navy + electric blue + sky blue
+  on pure black background
+  ══════════════════════════════════════════
+*/
+:root {
+  /* ─── Backgrounds (logo black base) ─── */
+  --ink:  #000000;        /* pure black bg – matches logo bg         */
+  --ink2: #080d18;        /* deep navy surface                        */
+  --ink3: #0f1929;        /* slightly lighter navy for cards          */
+
+  /* ─── Muted / text-secondary ─── */
+  --muted: #6b84a8;       /* desaturated blue-grey                    */
+
+  /* ─── Borders & Glass ─── */
+  --border: rgba(79, 158, 255, 0.12);   /* subtle blue-tinted border  */
+  --glass:  rgba(15, 40, 80, 0.35);     /* blue-glass surface         */
+  --glass2: rgba(20, 55, 110, 0.45);    /* slightly denser glass      */
+
+  /* ─── Base whites ─── */
+  --white: #f0f6ff;       /* warm-blue white for text                 */
+  --cream: #cfe0ff;       /* very light blue-white                    */
+
+  /* ─── PRIMARY accent – mid blue (logo main hue) ─── */
+  --accent:  #1e6fd9;     /* deep electric blue                       */
+  --accent2: #3d8ef0;     /* lighter electric blue                    */
+
+  /* ─── Supporting palette ─── */
+  --electric: #4f9eff;    /* sky-electric blue (logo highlight)        */
+  --mint:     #38b2e2;    /* cyan-blue (replaces green mint)           */
+  --lavender: #7aaef5;    /* powder blue (replaces purple lavender)    */
+
+  /* ─── Radii ─── */
+  --r:  16px;
+  --r2: 24px;
+}
+
+body {
+  background: var(--ink);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ─── Scrollbar ─────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--ink2); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent), var(--electric));
+  border-radius: 3px;
+}
+
+/* ─── Typography Utils ───────────────────────────── */
+.display-font { font-family: 'Syne', sans-serif; font-weight: 800; }
+
+/* ─── Buttons ────────────────────────────────────── */
+.btn {
+  padding: .6rem 1.4rem; border-radius: 50px; cursor: pointer;
+  font-weight: 500; font-size: .88rem;
+  border: none; transition: all .25s; text-decoration: none; display: inline-flex;
+  align-items: center; gap: .4rem;
+}
+
+.btn-ghost {
+  background: transparent; color: var(--muted);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover {
+  border-color: var(--electric); color: var(--white);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--electric));
+  color: white;
+  box-shadow: 0 4px 22px rgba(30, 111, 217, 0.4);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(79, 158, 255, 0.55);
+}
+
+.btn-outline {
+  background: transparent; color: var(--white);
+  border: 1.5px solid rgba(79, 158, 255, 0.25);
+}
+.btn-outline:hover {
+  border-color: var(--electric);
+  background: rgba(79, 158, 255, 0.08);
+}
+
+.btn-lg {
+  padding: .9rem 2rem; font-size: 1rem;
+  border-radius: var(--r); width: 100%; justify-content: center;
+}
+
+/* ─── Animations ───────────────────────────────── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .5; transform: scale(.8); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-pulse-custom { animation: pulse 2s infinite; }
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-spin-custom { animation: spin 1s linear infinite; }
+
+/* ─── Card Styles ─────────────────────────────── */
+.workshop-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  overflow: hidden; transition: all .3s; cursor: pointer; position: relative;
+}
+
+.workshop-card:hover {
+  border-color: rgba(79, 158, 255, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(30, 111, 217, 0.25);
+}
+
+.card-img {
+  height: 180px; display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem; position: relative;
+}
+
+.card-img-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 60%;
+  background: linear-gradient(to top, var(--ink2), transparent);
+}
+
+/* ─── Avatar Stack ─────────────────────────────── */
+.avatar-stack { display: flex; }
+.avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 2px solid var(--ink2);
+  background: linear-gradient(135deg, var(--accent), var(--electric));
+  display: flex; align-items: center; justify-content: center;
+  font-size: .65rem; font-weight: 700;
+  margin-left: -8px; color: white;
+}
+.avatar:first-child { margin-left: 0; }
+
+/* ─── Status Badges ─────────────────────────────── */
+.status-badge {
+  padding: .2rem .65rem; border-radius: 50px; font-size: .72rem; font-weight: 600;
+  display: inline-block;
+}
+.status-confirmed { background: rgba(56, 178, 226, 0.12); color: var(--mint); }
+.status-pending   { background: rgba(61, 142, 240, 0.12); color: var(--accent2); }
+.status-cancelled { background: rgba(30, 111, 217, 0.12); color: var(--electric); }
